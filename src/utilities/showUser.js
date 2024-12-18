@@ -14,6 +14,9 @@ export function showUser(fetchedUsers, usersWrapper, fetchedTodos) {
     const userTodosWrapper = document.createElement('div');
     userTodosWrapper.classList.add('todos-wrapper');
 
+    const loader = document.createElement('p');
+    loader.innerText = 'loading...';
+
     const currentUserId = index + 1;
     button.innerText = 'Show user tasks';
 
@@ -27,7 +30,11 @@ export function showUser(fetchedUsers, usersWrapper, fetchedTodos) {
 
     button.addEventListener('click', function () {
       const userTodos = filterUserTodos(currentUserId, fetchedTodos);
-      showUserTodos(userTodosWrapper, userTodos);
+      userTodosWrapper.appendChild(loader);
+      showUserTodos(userTodosWrapper, userTodos)
+        .then(function () {
+          loader.remove();
+        })
     });
   });
 }
