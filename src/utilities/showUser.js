@@ -31,10 +31,9 @@ export function showUser(fetchedUsers, usersWrapper, fetchedTodos) {
     button.addEventListener('click', function () {
       const userTodos = filterUserTodos(currentUserId, fetchedTodos);
       userTodosWrapper.appendChild(loader);
-      showUserTodos(userTodosWrapper, userTodos)
-        .then(function () {
-          loader.remove();
-        })
+      showUserTodos(userTodosWrapper, userTodos).then(function () {
+        loader.remove();
+      });
     });
   });
 }
