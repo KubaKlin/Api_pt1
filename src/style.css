@@ -1,0 +1,66 @@
+.users-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 600px;
+
+  border-bottom: 1px solid #ccc;
+}
+
+.user-info {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.user-wrapper p {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.user-wrapper button {
+  margin-left: 10px;
+  height: 25px;
+  background-color: lightseagreen;
+  color: #fff;
+  border: 0 transparent;
+  border-radius: 4px;
+  transition: background-color 300ms ease;
+}
+
+.user-wrapper button:hover {
+  background-color: dodgerblue;
+  cursor: pointer;
+}
+
+.todos-wrapper {
+  background-color: #eee;
+  padding: 0 10px;
+}
+
+.user-todo {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.user-todo .error,
+.user-todo .success {
+  margin-left: 10px;
+  font-size: 12px;
+}
+
+.user-todo .error {
+  color: red;
+}
+
+.user-todo .success {
+  color: green;
+}
