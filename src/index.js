@@ -3,23 +3,16 @@ import { showUser } from './utilities/showUser';
 
 const usersWrapper = document.querySelector('.users-wrapper');
 
-Promise.all([
-  fetch('https://jsonplaceholder.typicode.com/users'),
-  fetch('https://jsonplaceholder.typicode.com/todos'),
-])
-  .then(function ([userResponse, todosResponse]) {
-    if (!userResponse.ok) {
-      return Promise.reject({ status: userResponse.status });
+fetch('https://jsonplaceholder.typicode.com/users')
+  .then(function (response) {
+    if (!response.ok) {
+      return Promise.reject({ status: response.status });
     }
-    if (!todosResponse.ok) {
-      return Promise.reject({ status: todosResponse.status });
-    }
-    return Promise.all([userResponse.json(), todosResponse.json()]);
+    return response.json();
   })
   .then(function (responseBodies) {
-    const fetchedUsers = responseBodies[0];
-    const fetchedTodos = responseBodies[1];
-    showUser(fetchedUsers, usersWrapper, fetchedTodos);
+    const fetchedUsers = responseBodies;
+    showUser(fetchedUsers, usersWrapper);
   })
   .catch(function (error) {
     console.log('Status code', error?.status);

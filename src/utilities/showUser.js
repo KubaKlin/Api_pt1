@@ -1,7 +1,6 @@
 import { filterUserTodos } from './filterUserTodos';
-import { showUserTodos } from './showUserTodos';
 
-export function showUser(fetchedUsers, usersWrapper, fetchedTodos) {
+export function showUser(fetchedUsers, usersWrapper) {
   fetchedUsers.forEach(function (user, index) {
     const userWrapperInfo = document.createElement('div');
     userWrapperInfo.classList.add('user-info');
@@ -14,9 +13,6 @@ export function showUser(fetchedUsers, usersWrapper, fetchedTodos) {
     const userTodosWrapper = document.createElement('div');
     userTodosWrapper.classList.add('todos-wrapper');
 
-    const loader = document.createElement('p');
-    loader.innerText = 'loading...';
-
     const currentUserId = index + 1;
     button.innerText = 'Show user tasks';
 
@@ -28,12 +24,13 @@ export function showUser(fetchedUsers, usersWrapper, fetchedTodos) {
     userWrapper.appendChild(userTodosWrapper);
     userNameHolder.innerText = userName;
 
+    const loader = document.createElement('p');
+    loader.innerText = 'loading...';
+    loader.classList.add('loader');
+
     button.addEventListener('click', function () {
-      const userTodos = filterUserTodos(currentUserId, fetchedTodos);
       userTodosWrapper.appendChild(loader);
-      showUserTodos(userTodosWrapper, userTodos).then(function () {
-        loader.remove();
-      });
+      filterUserTodos(currentUserId, userTodosWrapper);
     });
   });
 }
