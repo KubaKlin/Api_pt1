@@ -1,7 +1,7 @@
 import './style.css';
-import { showUser } from './utilities/showUser';
+import { showUsers } from './utilities/showUsers';
 
-const usersWrapper = document.querySelector('.users-wrapper');
+const allUsersWrapper = document.querySelector('.users-wrapper');
 
 fetch('https://jsonplaceholder.typicode.com/users')
   .then(function (response) {
@@ -10,9 +10,8 @@ fetch('https://jsonplaceholder.typicode.com/users')
     }
     return response.json();
   })
-  .then(function (responseBodies) {
-    const fetchedUsers = responseBodies;
-    showUser(fetchedUsers, usersWrapper);
+  .then(function (response) {
+    showUsers(response, allUsersWrapper);
   })
   .catch(function (error) {
     console.log('Status code', error?.status);

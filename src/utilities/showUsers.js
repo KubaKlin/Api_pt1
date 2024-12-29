@@ -1,7 +1,7 @@
-import { filterUserTodos } from './filterUserTodos';
+import { fetchUserTodos } from './fetchUserTodos';
 
-export function showUser(fetchedUsers, usersWrapper) {
-  fetchedUsers.forEach(function (user, index) {
+export function showUsers(fetchedUsers, allUsersWrapper) {
+  fetchedUsers.forEach(function (user) {
     const userWrapperInfo = document.createElement('div');
     userWrapperInfo.classList.add('user-info');
     const userNameHolder = document.createElement('p');
@@ -13,12 +13,12 @@ export function showUser(fetchedUsers, usersWrapper) {
     const userTodosWrapper = document.createElement('div');
     userTodosWrapper.classList.add('todos-wrapper');
 
-    const currentUserId = index + 1;
+    const currentUserId = user.id;
     button.innerText = 'Show user tasks';
 
     userWrapper.classList.add('user-wrapper');
     userWrapper.appendChild(userWrapperInfo);
-    usersWrapper.appendChild(userWrapper);
+    allUsersWrapper?.appendChild(userWrapper);
     userWrapperInfo.appendChild(userNameHolder);
     userWrapperInfo.appendChild(button);
     userWrapper.appendChild(userTodosWrapper);
@@ -37,7 +37,7 @@ export function showUser(fetchedUsers, usersWrapper) {
       } else {
         button.innerText = 'hide';
         userTodosWrapper.appendChild(loader);
-        filterUserTodos(currentUserId, userTodosWrapper);
+        fetchUserTodos(currentUserId, userTodosWrapper);
       }
     });
   });
