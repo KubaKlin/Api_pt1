@@ -29,8 +29,16 @@ export function showUser(fetchedUsers, usersWrapper) {
     loader.classList.add('loader');
 
     button.addEventListener('click', function () {
-      userTodosWrapper.appendChild(loader);
-      filterUserTodos(currentUserId, userTodosWrapper);
+      if (userTodosWrapper.hasChildNodes()) {
+        button.innerText = 'Show user tasks';
+        while (userTodosWrapper.firstChild) {
+          userTodosWrapper.removeChild(userTodosWrapper.firstChild);
+        }
+      } else {
+        button.innerText = 'hide';
+        userTodosWrapper.appendChild(loader);
+        filterUserTodos(currentUserId, userTodosWrapper);
+      }
     });
   });
 }
