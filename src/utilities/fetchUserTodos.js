@@ -9,7 +9,7 @@ export function fetchUserTodos(currentUserId, userTodosWrapper) {
       return response.json();
     })
     .then(function (response) {
-      showUserTodos(userTodosWrapper, response)
+      showUserTodos(userTodosWrapper, response);
     })
     .then(function () {
       const loaderToRemove = document.querySelector('.loader');
