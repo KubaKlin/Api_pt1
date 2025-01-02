@@ -10,8 +10,6 @@ export function fetchUserTodos(currentUserId, userTodosWrapper) {
     })
     .then(function (response) {
       showUserTodos(userTodosWrapper, response);
-    })
-    .then(function () {
       const loaderToRemove = document.querySelector('.loader');
       loaderToRemove.remove();
     })
